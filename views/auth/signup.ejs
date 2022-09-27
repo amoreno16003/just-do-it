@@ -1,4 +1,4 @@
-<form action="/auth/signup" method="POST">
+<!-- <form action="/auth/signup" method="POST">
     <label for="new-email">Email</label>
     <input id="new-email" type="email" name="email" required>
   
@@ -10,4 +10,34 @@
   
     <input type="submit" value="Sign up">
 </form>
-  
+   -->
+
+<link rel="stylesheet" href="/css/login.css">
+<main class="form-signin">
+  <form action="/auth/signup" method="POST">
+    <img id="signinimage" src="https://t4.ftcdn.net/jpg/04/94/67/87/360_F_494678731_DzvayqQlvCQxFYY8dGonVJ3hwe02btxd.jpg" alt="" width="200px" height="auto">
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+    <div class="form-floating">
+      <input type="email" class="form-control" id="new-email" placeholder="name@example.com" name="email">
+      <label for="new-email">Enter email</label>
+    </div>
+    <div class="form-floating">
+        <input type="text" class="form-control" id="new-name" placeholder="name@example.com" name="name">
+        <label for="new-name">Enter email</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="auth-password" placeholder="Password" name="password">
+      <label for="auth-password">Enter password</label>
+    </div>
+
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit" value="Sign up">Sign in</button>
+    <!-- <p class="mt-5 mb-3 text-muted">&copy; 2017–{{< year >}}</p> -->
+  </form>
+</main>
+

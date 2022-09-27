@@ -1,9 +1,6 @@
 'use strict';
-<<<<<<< HEAD
-=======
 const bcrypt = require('bcryptjs');
 
->>>>>>> origin/codealong
 const {
   Model
 } = require('sequelize');
@@ -16,6 +13,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      models.user.hasMany(models.workout);
+      models.user.hasMany(models.recipe);
+      
     }
   };
   user.init({
@@ -49,8 +49,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'user',
   });
-<<<<<<< HEAD
-=======
 
   user.addHook('beforeCreate', (pendingUser) => {
     let hash = bcrypt.hashSync(pendingUser.password, 12);
@@ -70,6 +68,5 @@ module.exports = (sequelize, DataTypes) => {
     return userData;
   }
 
->>>>>>> origin/codealong
   return user;
 };

@@ -1,0 +1,39 @@
+<h1>Find Your Favorite Recipes to achieve your goals!</h1>
+<form method="POST" action="/recipes/results">
+    <input type="text" id="search" name="search" value="">
+    <button type="submit">Search</button>
+</form>
+
+<form method="get" action="/">
+    <button type="submit">Back to Homepage</button>
+</form>
+<br>
+<br>
+<br>
+<% data.forEach((elem) => { %>
+    <h2><%= elem.title %> </h2>
+    <h3>The price per serving is: <%= (parseInt(elem.pricePerServing)/10).toString() %>$ </h3>
+    <img src=<%= elem.image %> >
+    
+    <a href="<%= elem.sourceUrl %>">Learn more about it here!</a>
+    <br>
+    <br>
+    <br>
+    
+    
+    
+    <!-- <form method="POST" action="/workouts/myworkoutroutine">
+      <input type="text" value="<%= elem.name %>" name="name" hidden>
+      <input type="text" value="<%= elem.target %>" name="target" hidden>
+      <input type="text" value="<%= elem.gifUrl %>" name="gif" hidden>
+      <input type="text" value="<%= currentUser.id %>" name="userId" hidden>
+      <button type="submit">Add To Routine</button>
+    </form> -->
+    <br>
+    <br>
+ <% }) %>
+
+ <!-- vegetarian, veryHealthy, title, image, sourceUrl, healthScore, userId, pricePerServing -->
+
+
+

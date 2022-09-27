@@ -11,6 +11,14 @@ router.get("/login", (req, res) => {
   res.render("auth/login");
 });
 
+router.get("/search", (req,res) => {
+  res.render("workouts/search")
+});
+
+// router.get("/createyourown", (req, res) => {
+//   res.render("navbar/createyourownworkout");
+// });
+
 router.get('/logout', (req, res) => {
   req.logOut(() => {
     console.log('I am logged out')

@@ -1,0 +1,29 @@
+<h1>These are your recipes based on your search!</h1>
+<form method="get" action="/workouts/search">
+    <button type="submit">Back to Search</button>
+</form>
+<br>
+<br>
+<br>
+<% data.forEach((elem) => { %>
+    <h2><%= elem.title %> </h2>
+    <!-- <h3>The price per serving is: <%= (parseInt(elem.pricePerServing)/10).toString() %>$ </h3> -->
+    <img src=<%= elem.image %> >
+    
+    <!-- <a href="<%= elem.sourceUrl %>">Learn more about it here!</a> -->
+    <br>
+    <br>
+    <br>
+    
+    
+    
+    <form method="POST" action="/recipes/myrecipes">
+      <input type="text" value="<%= elem.title %>" name="title" hidden>
+      <input type="text" value="<%= elem.id %>" name="recipeId" hidden>
+      <input type="text" value="<%= elem.image %>" name="img" hidden>
+      <input type="text" value="<%= currentUser.id %>" name="userId" hidden>
+      <button type="submit">Add To My Recipes</button>
+    </form>
+    <br>
+    <br>
+ <% }) %>
