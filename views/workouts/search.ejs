@@ -1,4 +1,4 @@
-<h1>SEARCH PAGE</h1>
+<!-- <h1>Find Exercises For Your Goals!</h1>
 <form method="POST" action="/workouts/results">
     <input type="text" id="search" name="search" value="">
     <button type="submit">Search</button>
@@ -6,4 +6,29 @@
 
 <form method="get" action="/">
     <button type="submit">Back to Homepage</button>
-</form>
+</form> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/searchpage.css">
+</head>
+<body>
+    <form method="get" action="/">
+        <button type="submit">Back to Homepage</button>
+    </form>
+    <h1>Find Exercises For Your Goals!</h1>
+    <div id="search-form">
+        <form method="POST" action="/workouts/results">
+            <input type="text" id="search" name="search" value="">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    
+</body>
+</html>
