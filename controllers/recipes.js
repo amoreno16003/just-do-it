@@ -25,7 +25,7 @@ router.get('/search', (req, res) => {
         url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random',
         params: {tags: '', number: '10'},
         headers: {
-            'X-RapidAPI-Key': '36af0db4d4msh1d00358b75b0ddbp16fb81jsnbf8bd5322c96',
+            'X-RapidAPI-Key': process.env.RECIPEAPIKEY,
             'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
         }
 };
@@ -64,7 +64,7 @@ router.post('/results', async (req, res) => {
           number: '10'
         },
         headers: {
-          'X-RapidAPI-Key': '36af0db4d4msh1d00358b75b0ddbp16fb81jsnbf8bd5322c96',
+          'X-RapidAPI-Key': process.env.APIKEY,
           'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
         }
       };

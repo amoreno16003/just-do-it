@@ -17,10 +17,10 @@ console.log('yooooooo..... >>>', SECRET_SESSION);
 app.set('view engine', 'ejs');
 
 app.use(require('morgan')('dev'));
+app.use(methodOverride('_method'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
 app.use(layouts);
-app.use(methodOverride('_method'));
 
 app.use(session({
   secret: SECRET_SESSION,
@@ -50,10 +50,10 @@ app.get('/', (req, res) => {
 
 
 // access to all of our auth routes GET /auth/login, GET /auth/signup POST routes
+
 app.use('/auth', require('./controllers/auth'));
-app.use('/workouts', require('./controllers/workouts'));
-app.use('/recipes', require('./controllers/recipes'));
-app.use(express.static(__dirname + '/public'));
+app.use('/workouts', isLoggedIn, require('./controllers/workouts'));
+app.use('/recipes', isLoggedIn, require('./controllers/recipes'));
 //app.use( express.static( "views/public" ) );
 
 // Add this above /auth controllers
@@ -66,10 +66,22 @@ app.get('/profile/edit', isLoggedIn, (req, res) => {
   res.render('edit');
 });
 
-app.put('/profile/:id', isLoggedIn, async (req, res) => {
+app.put('/profile/:id',isLoggedIn, async (req, res) => {
   try {
       const foundUser = await db.user.findOne({ where: { email: req.body.email }});
-      if (foundUser.email && foundUser.id !== req.user.id) {
+      console.log(foundUser);
+      if (!foundUser) {
+        const usersUpdated = await db.user.update({
+          email: req.body.email,
+          name: req.body.name
+        }, {
+          where: {
+            id: req.params.id
+          }
+        });
+
+        res.redirect('/profile'); // route
+      } else if (foundUser.email && foundUser.id !== req.user.id) {
         req.flash('error', 'Email already exists. Please try again.');
         res.redirect('/profile');
       } else {
@@ -93,19 +105,9 @@ app.put('/profile/:id', isLoggedIn, async (req, res) => {
     console.log('*********************ERROR***********************');
     console.log(error);
     console.log('**************************************************');
-    res.render('edit');
+    res.render('profile/edit');
   }
 });
-// app.get('/createyourown', (req, res) => {
-//   res.render('createyourown', {data:data});
-// });
-
-// app.post('/myworkoutroutine', (req, res) => {
-//   console.log(req.body);
-//   res.send('POST request to the homepage')
-// })
-
-// app.use('/workoutroutine', require('./controllers/workoutroutine'))
 
 app.get('*', function(req, res){
   res.status(404).render('error');
